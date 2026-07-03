@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abarrotes Almiux — Mi cuenta</title>
+
+  <link rel="icon" href="../images/ICONO_ALMOO.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../styles.css">
+
+  <style>
+    .cuenta-main {
+      min-height: 80vh;
+      padding: 48px var(--page-padding);
+      background: var(--color-bg);
+    }
+    .cuenta-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .cuenta-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cuenta-header h1 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--color-dark);
+      margin: 0;
+    }
+    .cuenta-header p {
+      color: var(--color-muted);
+      font-size: 16px;
+      margin: 4px 0 0;
+    }
+    .cuenta-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 28px;
+    }
+    @media (max-width: 768px) {
+      .cuenta-grid { grid-template-columns: 1fr; }
+    }
+    .cuenta-card {
+      background: var(--color-bg-card);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-card);
+      padding: 28px;
+    }
+    .cuenta-card h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--color-dark);
+      margin: 0 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cuenta-card h2 i { color: var(--color-primary); }
+    .dato-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .dato-row:last-child { border-bottom: none; }
+    .dato-row label {
+      font-size: 13px;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .dato-row span {
+      font-size: 17px;
+      color: var(--color-dark);
+      font-weight: 500;
+    }
+    .cuenta-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .cuenta-link-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      color: var(--color-dark);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: border-color .2s, background .2s;
+    }
+    .cuenta-link-btn:hover {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+    .cuenta-link-btn i { color: var(--color-primary); width: 20px; text-align: center; }
+    .btn-cerrar-sesion {
+      margin-top: 16px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: #fde8e8;
+      color: #c0392b;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .2s;
+    }
+    .btn-cerrar-sesion:hover { background: #f5c6c6; }
+    .pedido-item {
+      padding: 16px;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      background: var(--color-bg);
+    }
+    .pedido-item:last-child { margin-bottom: 0; }
+    .pedido-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pedido-id { font-weight: 700; color: var(--color-dark); }
+    .pedido-fecha { font-size: 14px; color: var(--color-muted); }
+    .pedido-total { font-family: var(--font-display); font-size: 20px; color: var(--color-primary); font-weight: 900; }
+    .pedido-estado {
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-weight: 600;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+    }
+    #sinPedidos { color: var(--color-muted); text-align: center; padding: 32px 0; }
+  </style>
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="cuenta-main">
+
+    <div class="cuenta-header">
+      <div class="cuenta-avatar" id="cuentaAvatar">?</div>
+      <div>
+        <h1 id="cuentaNombre">Mi cuenta</h1>
+        <p id="cuentaEmail"></p>
+      </div>
+    </div>
+
+    <div class="cuenta-grid">
+
+      <!-- Columna izquierda: datos + accesos rápidos -->
+      <div>
+        <div class="cuenta-card">
+          <h2><i class="fa-solid fa-user"></i> Mis datos</h2>
+          <div id="datoUsuario">
+            <div class="dato-row"><label>Nombre</label><span id="datNombre">—</span></div>
+            <div class="dato-row"><label>Email</label><span id="datEmail">—</span></div>
+            <div class="dato-row"><label>Teléfono</label><span id="datTel">—</span></div>
+            <div class="dato-row"><label>Dirección</label><span id="datDir">—</span></div>
+            <div class="dato-row"><label>Rol</label><span id="datRol">—</span></div>
+          </div>
+
+          <div class="cuenta-links">
+            <a href="perfil.html" class="cuenta-link-btn">
+              <i class="fa-solid fa-pen-to-square"></i> Editar perfil
+            </a>
+            <a href="mis-pedidos.html" class="cuenta-link-btn">
+              <i class="fa-solid fa-bag-shopping"></i> Ver todos mis pedidos
+            </a>
+            <a href="../productos.html" class="cuenta-link-btn">
+              <i class="fa-solid fa-store"></i> Seguir comprando
+            </a>
+          </div>
+
+          <button class="btn-cerrar-sesion" id="btnCerrarSesion">
+            <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+          </button>
+        </div>
+      </div>
+
+      <!-- Columna derecha: pedidos recientes -->
+      <div>
+        <div class="cuenta-card">
+          <h2><i class="fa-solid fa-receipt"></i> Pedidos recientes</h2>
+          <div id="listaPedidosRecientes">
+            <div id="sinPedidos" style="display:none">
+              <i class="fa-solid fa-box-open" style="font-size:32px;color:var(--color-border)"></i>
+              <p>Aún no tienes pedidos.</p>
+              <a href="../productos.html" class="btn-primary" style="display:inline-block;margin-top:12px">Ver productos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/productos.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/carrito.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const sesion = (() => {
+      try { return JSON.parse(sessionStorage.getItem('almiux_sesion')); } catch(_) { return null; }
+    })();
+
+    if (!sesion) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    /* Avatar y nombre en cabecera */
+    const inicial = (sesion.nombres || sesion.email || '?')[0].toUpperCase();
+    document.getElementById('cuentaAvatar').textContent = inicial;
+    document.getElementById('cuentaNombre').textContent = sesion.nombres || 'Mi cuenta';
+    document.getElementById('cuentaEmail').textContent  = sesion.email || '';
+
+    /* Cerrar sesión */
+    document.getElementById('btnCerrarSesion').addEventListener('click', () => {
+      sessionStorage.removeItem('almiux_sesion');
+      sessionStorage.removeItem('almiux_admin_sesion');
+      window.location.href = '../home.html';
+    });
+
+    /* Cargar datos completos del usuario desde el backend */
+    try {
+      if (sesion.id) {
+        const user = await UsuariosAPI.getById(sesion.id);
+        document.getElementById('datNombre').textContent = `${user.nombres || ''} ${user.apellidos || ''}`.trim() || '—';
+        document.getElementById('datEmail').textContent  = user.email || '—';
+        document.getElementById('datTel').textContent   = user.telefono || '—';
+        document.getElementById('datDir').textContent   = user.direccion || '—';
+        document.getElementById('datRol').textContent   = user.rol || '—';
+      }
+    } catch(_) {
+      document.getElementById('datNombre').textContent = sesion.nombres || '—';
+      document.getElementById('datEmail').textContent  = sesion.email   || '—';
+      document.getElementById('datRol').textContent    = sesion.rol     || '—';
+    }
+
+    /* Cargar pedidos recientes */
+    try {
+      const pedidos = await PedidosAPI.getAll();
+      const misPedidos = pedidos
+        .filter(p => p.user?.id === sesion.id || p.user?.id === Number(sesion.id))
+        .sort((a, b) => new Date(b.fechaPedido) - new Date(a.fechaPedido))
+        .slice(0, 5);
+
+      const lista = document.getElementById('listaPedidosRecientes');
+      if (misPedidos.length === 0) {
+        document.getElementById('sinPedidos').style.display = 'block';
+      } else {
+        misPedidos.forEach(p => {
+          const fecha = p.fechaPedido ? new Date(p.fechaPedido).toLocaleDateString('es-MX') : '—';
+          const div = document.createElement('div');
+          div.className = 'pedido-item';
+          div.innerHTML = `
+            <div class="pedido-meta">
+              <span class="pedido-id">Pedido #${p.idPedido ?? p.id}</span>
+              <span class="pedido-fecha">${fecha}</span>
+              <span class="pedido-estado">${p.estatus || 'PENDIENTE'}</span>
+              <span class="pedido-total">$${Number(p.total).toFixed(2)}</span>
+            </div>
+            ${p.direccionEntrega ? `<p style="font-size:14px;color:var(--color-muted);margin:8px 0 0">${p.direccionEntrega}</p>` : ''}
+          `;
+          lista.appendChild(div);
+        });
+      }
+    } catch(_) {
+      document.getElementById('sinPedidos').style.display = 'block';
+    }
+  });
+  </script>
+</body>
+</html>

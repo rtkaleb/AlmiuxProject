@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abarrotes Almiux — Crear cuenta</title>
+
+  <link rel="icon" href="/images/ICONO_ALMOO.png" type="image/png">
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  registro.html — Registro de usuarios                        ║
+    ║  Tarea 9 · Generation Mx Bootcamp                            ║
+    ║                                                              ║
+    ║  EQUIPO:                                                     ║
+    ║  · Kaleb   → Estructura base HTML (este archivo)             ║
+    ║  · Danna   → Campos del formulario HTML                      ║
+    ║  · Arturo  → Estilos CSS                                     ║
+    ║  · Yaris   → Panel de beneficios + hero                      ║
+    ║  · Zared   → Validaciones JS                                 ║
+    ║  · Noé     → Submit, JSON y alertas globales                 ║
+    ║  · Diego   → UX extra (ojo, fortaleza, blur en tiempo real)  ║
+    ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap 4.4 (alertas requeridas por la tarea) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+  <!-- Hoja de estilos del proyecto -->
+  <link rel="stylesheet" href="../styles.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+</head>
+
+<body>
+
+<!-- Contenedor donde se cargará el Navbar -->
+  <div id="navbar-container"></div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       HERO SUPERIOR 
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="auth-hero">
+    <span class="badge"><i class="fa-solid fa-lock"></i> &nbsp;Crear cuenta</span>
+    <h1>Queremos <span>conocerte</span></h1>
+    <p>
+      Completa el formulario para registrarte como cliente en Abarrotes Almiux.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       LAYOUT PRINCIPAL — Tarea de KALEB
+       Dos columnas: izquierda = formulario, derecha = beneficios
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="auth-layout">
+
+    <!-- ── Columna izquierda: formulario ──────────────────────── -->
+    <div class="form-card">
+
+      <h2 class="form-card-title">Registro de usuario</h2>
+      <p class="form-card-sub">
+        Todos los campos marcados con <span style="color:var(--color-primary)">*</span> son obligatorios.
+      </p>
+
+       <!-- ALERTA GLOBAL ERROR -->
+      <div class="alerta-global alerta-error" id="alertaError" role="alert">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="alertaErrorMsg">Por favor corrige los errores marcados.</span>
+      </div>
+
+      <!-- ALERTA GLOBAL ÉXITO -->
+      <div class="alerta-global alerta-exito" id="alertaExito" role="alert">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="alertaExitoMsg">¡Cuenta creada exitosamente! Bienvenido/a a Abarrotes Almiux.</span>
+      </div>
+      
+
+      <form id="authForm" novalidate>
+
+        <!-- Nombre(s) y Apellidos -->
+        <div class="fila-2">
+          <div class="campo-grupo">
+            <label for="nombres">Nombre(s) <span class="req">*</span></label>
+            <input type="text" id="nombres" name="nombres" placeholder="Ingresa tu nombre" autocomplete="given-name">
+            <div class="alerta-global alerta-error" id="errorNombres" role="alert"></div>
+          </div>
+          <div class="campo-grupo">
+            <label for="apellidos">Apellidos <span class="req">*</span></label>
+            <input type="text" id="apellidos" name="apellidos" placeholder="Ingresa tus apellidos"
+              autocomplete="family-name">
+            <div class="alerta-global alerta-error" id="errorApellidos" role="alert"></div>
+          </div>
+        </div>
+
+        <!-- Email y Teléfono -->
+        <div class="fila-2">
+          <div class="campo-grupo">
+            <label for="email">Correo electrónico <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" autocomplete="email">
+            <div class="alerta-global alerta-error" id="errorEmail" role="alert"></div>
+          </div>
+          <div class="campo-grupo">
+            <label for="telefono">Teléfono <span class="req">*</span></label>
+            <input type="tel" id="telefono" name="telefono" placeholder="55 1234 5678" maxlength="10"
+              autocomplete="tel">
+            <div class="alerta-global alerta-error" id="errorTelefono" role="alert"></div>
+          </div>
+        </div>
+
+        <!-- Fecha de nacimiento y Género -->
+        <div class="fila-2">
+          <div class="campo-grupo">
+            <label for="fechaNacimiento">Fecha de nacimiento <span class="req">*</span></label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+            <div class="alerta-global alerta-error" id="errorFecha" role="alert"></div>
+          </div>
+          <div class="campo-grupo">
+            <label for="genero">Género</label>
+            <select id="genero" name="genero">
+              <option value="">Selecciona una opción</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+              <option value="no_especificado">Prefiero no decirlo</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="campo-grupo">
+          <label for="direccion">Dirección <span class="req">*</span></label>
+          <input type="text" id="direccion" name="direccion" placeholder="Calle, colonia, número exterior..."
+            autocomplete="street-address">
+          <div class="alerta-global alerta-error" id="errorDireccion" role="alert"></div>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="campo-grupo">
+          <label for="password">Contraseña <span class="req">*</span></label>
+          <div class="input-pwd-wrap">
+            <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres"
+              autocomplete="new-password">
+            <button type="button" class="btn-ojo" id="ojoPwd" aria-label="Mostrar contraseña">
+              <i class="fa-regular fa-eye" id="ojoIcon"></i>
+            </button>
+          </div>
+
+          <!-- Indicador de fortaleza — función de DIEGO -->
+          <div class="fortaleza-wrap" id="fortalezaWrap">
+            <div class="fortaleza-barra">
+              <div class="fortaleza-fill" id="fortalezaFill"></div>
+            </div>
+            <span class="fortaleza-label" id="fortalezaLabel"></span>
+          </div>
+          <div class="alerta-global alerta-error" id="errorPassword" role="alert"></div>
+        </div>
+
+        <!-- Confirmar contraseña -->
+        <div class="campo-grupo">
+          <label for="confirmarPassword">Confirmar contraseña <span class="req">*</span></label>
+          <div class="input-pwd-wrap">
+            <input type="password" id="confirmarPassword" name="confirmarPassword" placeholder="Repite tu contraseña"
+              autocomplete="new-password">
+            <button type="button" class="btn-ojo" id="ojoConfirm" aria-label="Mostrar contraseña">
+              <i class="fa-regular fa-eye" id="ojoIcon"></i>
+            </button>
+          </div>
+          <div class="alerta-global alerta-errorr" id="errorConfirmar" role="alert"></div>
+        </div>
+
+        <!-- Checkbox términos y condiciones -->
+        <div class="checkbox-grupo">
+          <input type="checkbox" id="terminos" name="terminos">
+          <label for="terminos">
+            Acepto los <a href="#">términos y condiciones</a> y autorizo
+            el uso de mis datos para recibir promociones y noticias.
+          </label>
+        </div>
+        <div class="alerta-global alerta-error" id="errorTerminos" role="alert" style="margin-bottom:16px"></div>
+
+        <!-- Botones -->
+        <div class="btns">
+          <button type="submit" class="btn-registrar" id="btnRegistrar">
+            Crear mi cuenta →
+          </button>
+          <button type="button" class="btn-limpiar" id="btnLimpiar">
+            ↺ Limpiar
+          </button>
+        </div>
+
+      </form>
+    </div> <!-- /form-card -->
+
+    <!-- ── Columna derecha: beneficios — Tarea de YARIS ────────── -->
+    <aside>
+      <div class="auth-side-card">
+        <h3>Beneficios</h3>
+        <p>
+          Al registrarte podrás realizar pedidos a domicilio de forma sencilla. Todo lo que necesitas a un solo click
+        </p>
+
+        <div class="auth-side-lista">
+          <div class="auth-side-item">
+            <div class="auth-side-im">
+              <img src="../images/registro.jpeg" alt="RegistroIm">
+            </div>
+          </div>
+          <div class="auth-side-item">
+            <div class="auth-side-icono">🚚</div>
+            <div>
+              <strong>Pedidos rápidos</strong>
+              <span>Facilita tus futuras compras y entregas a domicilio.</span>
+            </div>
+          </div>
+          <div class="auth-side-item">
+            <div class="auth-side-icono">⭐</div>
+            <div>
+              <strong>Atención personalizada</strong>
+              <span>Obtén un servicio cercano y dedicado, ideal para clientes frecuentes.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="ya-cuenta">
+          ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+        </p>
+      </div>
+    </aside>
+
+
+  </div><!-- /auth-layout -->
+
+ <!-- Contenedor donde se cargará el Footer -->
+<div id="footer-container"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+
+  <!-- JS del proyecto -->
+<script src="../js/utils.js"></script>
+<script src="../js/navbar.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/productos.js"></script>
+<script src="../js/carrito.js"></script>
+<!-- Validaciones del registro  -->
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/registro.js"></script>
+
+  
+
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abarrotes Almiux — Iniciar sesión</title>
+
+  <link rel="icon" href="/images/ICONO_ALMOO.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 4.4 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Hoja de estilos del proyecto -->
+  <link rel="stylesheet" href="../styles.css">
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- ══════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════ -->
+  <section class="auth-hero">
+   <span class="badge"><i class="fa-solid fa-lock"></i> &nbsp;Área de inicio de sesión</span> 
+    <h1>¡Bienvenido de <span>vuelta</span>!</h1>
+    <p>Ingresa con tu correo y contraseña para acceder a tu cuenta en Abarrotes Almiux.</p>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       LAYOUT PRINCIPAL
+  ══════════════════════════════════════════════ -->
+  <div class="auth-layout">
+
+    <!-- ── Columna izquierda: formulario ── -->
+    <div class="form-card">
+
+      <h2 class="form-card-title">Inicio de sesión</h2>
+      <p class="form-card-sub">
+        Todos los campos marcados con <span style="color:var(--color-primary)">*</span> son obligatorios.
+      </p>
+
+      <!-- Alerta error global -->
+      <div class="alerta-global alerta-error" id="alertaError" role="alert">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="alertaErrorMsg">Correo o contraseña incorrectos.</span>
+      </div>
+
+      <!-- Alerta éxito global -->
+      <div class="alerta-global alerta-exito" id="alertaExito" role="alert">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>¡Sesión iniciada! Redirigiendo…</span>
+      </div>
+
+      <form id="authForm" novalidate>
+
+        <!-- Email -->
+
+        <div class="campo-grupo">
+          <label for="loginEmail">
+            <i class="fa-solid fa-envelope"></i> Correo electrónico <span class="req">*</span></label>
+          </label>
+          <input
+            type="email" id="loginEmail" name="email" placeholder="correo@email.com" autocomplete="email">
+          <div class="msg-error" id="errorEmail">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Contraseña -->
+
+        <div class="campo-grupo">
+          <label for="loginPassword">
+            <i class="fa-solid fa-key"></i> Contraseña <span class="req">*</span></label>
+          </label>
+          <div class="input-pwd-wrap">
+            <input type="password" id="loginPassword" name="password" placeholder="Tu contraseña" autocomplete="current-password">
+            <button type="button" class="btn-ojo" id="ojoPwd" aria-label="Mostrar contraseña">
+              <i class="fa-regular fa-eye" id="ojoIcon"></i>
+            </button>
+          </div>
+          <div class="msg-error" id="errorPassword">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Recordarme + Olvidé -->
+        <div class="fila-extra">
+          <label class="check-label">
+            <input type="checkbox" id="recordarme">
+            Recordarme
+          </label>
+          <a href="olvido.html" class="link-olvido">
+            <i class="fa-solid fa-circle-question"></i> ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+
+        <!-- Botón -->
+        <button type="submit" class="btn-login" id="btnLogin">
+          <div class="spinner" id="loginSpinner"></div>
+          <i class="fa-solid fa-arrow-right-to-bracket" id="loginBtnIcon"></i>
+          <span id="loginBtnText">Iniciar sesión</span>
+        </button>
+
+      </form>
+      
+      <label></label>
+
+      <div class="sep">o</div>
+
+      <p class="auth-footer">
+        ¿No tienes cuenta?
+        <a href="registro.html">Regístrate aquí</a>
+      </p>
+
+    </div><!-- /login-card -->
+
+    <!-- ── Columna derecha: info ── -->
+    <aside>
+      <div class="auth-side-card">
+        <h3>Tu tienda de confianza, siempre disponible</h3>
+        <p>Accede a tu cuenta y gestiona tus pedidos de forma rápida y segura.</p>
+
+        <div class="auth-side-lista">
+          <div class="auth-side-item">
+             <div class="hero-almo-wrap">
+          <img src="/images/Almo_login.png" alt="olvidoIm" class="hero-almo">
+        </div>
+          </div>
+          <div class="auth-side-item">
+            <div class="auth-side-icono">🛒</div>
+            <div>
+              <strong>Pedidos a un click</strong>
+            </div>
+          </div>
+          <div class="auth-side-item">
+            <div class="auth-side-icono">📦</div>
+            <div>
+              <strong>Historial de compras</strong>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="ya-cuenta">
+        ¿Eres nuevo aquí? <a href="registro.html">Crea tu cuenta gratis</a>
+        </p>
+      </div>
+    </aside>
+
+  </div><!-- /auth-layout -->
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+
+  <!-- JS del proyecto -->
+<script src="../js/utils.js"></script>
+<script src="../js/navbar.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/productos.js"></script>
+<script src="../js/carrito.js"></script>
+<!-- Validaciones del registro  -->
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/login.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abarrotes Almiux — Mis pedidos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="pedidos-main">
+    <div class="pedidos-wrap">
+      <h1>
+        <i class="fa-solid fa-bag-shopping page-icon"></i>Mis pedidos
+      </h1>
+
+      <div class="pedidos-links">
+        <a href="perfil.html"><i class="fa-solid fa-user"></i> Mi perfil</a>
+        <a href="../productos.html"><i class="fa-solid fa-store"></i> Seguir comprando</a>
+      </div>
+
+      <div id="cargando">
+        <i class="fa-solid fa-spinner fa-spin"></i> Cargando pedidos…
+      </div>
+      <div id="listaPedidos"></div>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/productos.js"></script>
+  <script src="../js/carrito.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/mis-pedidos.js"></script>
+</body>
+</html>

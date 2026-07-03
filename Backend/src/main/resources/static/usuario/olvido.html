@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abarrotes Almiux — Recuperar contraseña</title>
+
+  <link rel="icon" href="/images/ICONO_ALMOO.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 4.4 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Estilos del proyecto -->
+  <link rel="stylesheet" href="../styles.css">
+
+  
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- ══ HERO ══ -->
+  <section class="auth-hero">
+    <span class="badge"><i class="fa-solid fa-key"></i> &nbsp;Recuperación de cuenta</span>
+    <h1>¿Olvidaste tu <span>contraseña</span>?</h1>
+    <p>Verifica tu identidad con los datos de tu registro y crea una contraseña nueva.</p>
+  </section>
+
+  <!-- ══ LAYOUT ══ -->
+  <div class="auth-layout">
+
+    <!-- ── Formulario ── -->
+    <div class="form-card">
+
+      <h2 class="form-card-title">Recuperar contraseña</h2>
+      <p class="form-card-sub">
+        Ingresa los datos con los que te registraste para verificar tu identidad.
+      </p>
+
+      <!-- STEPPER -->
+      <div class="stepper">
+        <div class="step active" id="stepEl1">
+          <div class="step-num" id="stepNum1"><i class="fa-solid fa-user"></i></div>
+          <span class="step-label">Verificar</span>
+        </div>
+        <div class="step-line" id="stepLine1"></div>
+        <div class="step" id="stepEl2">
+          <div class="step-num" id="stepNum2">2</div>
+          <span class="step-label">Nueva clave</span>
+        </div>
+        <div class="step-line" id="stepLine2"></div>
+        <div class="step" id="stepEl3">
+          <div class="step-num" id="stepNum3">3</div>
+          <span class="step-label">Listo</span>
+        </div>
+      </div>
+
+      <!-- ALERTA GLOBAL ERROR -->
+      <div class="alerta-global alerta-error" id="alertaError" role="alert">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="alertaErrorMsg">Los datos no coinciden con ningún usuario registrado.</span>
+      </div>
+
+      <!-- ALERTA GLOBAL ÉXITO -->
+      <div class="alerta-global alerta-exito" id="alertaExito" role="alert">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="alertaExitoMsg">Contraseña actualizada correctamente.</span>
+      </div>
+
+      <!-- ══ PASO 1: Verificación de identidad ══ -->
+      <div class="paso activo" id="paso1">
+        <form id="authForm" novalidate>
+
+          <div class="fila-2">
+            <div class="campo-grupo">
+              <label for="vNombres"><i class="fa-solid fa-user"></i> Nombre(s)</label>
+              <input type="text" id="vNombres" placeholder="Tu nombre" autocomplete="given-name">
+              <div class="msg-error" id="errNombres"><i class="fa-solid fa-circle-exclamation"></i><span></span></div>
+            </div>
+            <div class="campo-grupo">
+              <label for="vApellidos"><i class="fa-solid fa-user"></i> Apellidos</label>
+              <input type="text" id="vApellidos" placeholder="Tus apellidos" autocomplete="family-name">
+              <div class="msg-error" id="errApellidos"><i class="fa-solid fa-circle-exclamation"></i><span></span></div>
+            </div>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="vEmail"><i class="fa-solid fa-envelope"></i> Correo electrónico</label>
+            <input type="email" id="vEmail" placeholder="ejemplo@correo.com" autocomplete="email">
+            <div class="msg-error" id="errEmail"><i class="fa-solid fa-circle-exclamation"></i><span></span></div>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="vTelefono"><i class="fa-solid fa-phone"></i> Teléfono (10 dígitos)</label>
+            <input type="tel" id="vTelefono" placeholder="55 1234 5678" maxlength="10" autocomplete="tel">
+            <div class="msg-error" id="errTelefono"><i class="fa-solid fa-circle-exclamation"></i><span></span></div>
+          </div>
+
+          <button type="submit" class="btn-continuar" id="btnVerificar">
+            <i class="fa-solid fa-shield-halved"></i>
+            Verificar identidad
+          </button>
+
+          <a href="login.html" style="display:block; text-align:center; margin-top:16px; font-size:14px; color:var(--color-muted); text-decoration:none;">
+            <i class="fa-solid fa-arrow-left"></i> Volver al inicio de sesión
+          </a>
+        </form>
+      </div><!-- /paso1 -->
+
+      <!-- ══ PASO 2: Nueva contraseña ══ -->
+      <div class="paso" id="paso2">
+        <form id="formNuevaClave" novalidate>
+
+          <div class="alerta-global alerta-info" id="alertaUsuario" style="display:flex;">
+            <i class="fa-solid fa-circle-info"></i>
+            <span id="alertaUsuarioMsg">Usuario verificado.</span>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="nuevaPassword"><i class="fa-solid fa-lock"></i> Nueva contraseña</label>
+            <div class="input-pwd-wrap">
+              <input type="password" id="nuevaPassword" placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+              <button type="button" class="btn-ojo" id="ojoNueva" aria-label="Mostrar contraseña">
+                <i class="fa-regular fa-eye" id="ojoNuevaIcon"></i>
+              </button>
+            </div>
+            <div class="fortaleza-wrap" id="fortalezaWrap">
+              <div class="fortaleza-barra">
+                <div class="fortaleza-fill" id="fortalezaFill"></div>
+              </div>
+              <span class="fortaleza-label" id="fortalezaLabel"></span>
+            </div>
+            <div class="msg-error" id="errNuevaPwd"><i class="fa-solid fa-circle-exclamation"></i><span></span></div>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="confirmarPassword"><i class="fa-solid fa-lock"></i> Confirmar contraseña</label>
+            <div class="input-pwd-wrap">
+              <input type="password" id="confirmarPassword" placeholder="Repite tu contraseña" autocomplete="new-password">
+              <button type="button" class="btn-ojo" id="ojoConfirmar" aria-label="Mostrar contraseña">
+                <i class="fa-regular fa-eye" id="ojoConfirmarIcon"></i>
+              </button>
+            </div>
+            <div class="msg-error" id="errConfirmar"><i class="fa-solid fa-circle-exclamation"></i><span></span></div>
+          </div>
+
+          <button type="submit" class="btn-continuar" id="btnGuardar">
+            <i class="fa-solid fa-floppy-disk"></i>
+            Guardar nueva contraseña
+          </button>
+
+          <button type="button" class="btn-volver" id="btnVolver1">
+            <i class="fa-solid fa-arrow-left"></i> Volver
+          </button>
+
+        </form>
+      </div><!-- /paso2 -->
+
+      <!-- ══ PASO 3: Éxito ══ -->
+      <div class="paso" id="paso3">
+        <div class="exito-final">
+          <div class="icono-exito">🎉</div>
+          <h3>¡Contraseña actualizada!</h3>
+          <p>Tu contraseña fue cambiada correctamente. Ya puedes iniciar sesión con tu nueva contraseña.</p>
+          <a href="login.html" class="btn-continuar" style="text-decoration:none; width:auto; display:inline-flex;">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            Ir a iniciar sesión
+          </a>
+        </div>
+      </div><!-- /paso3 -->
+
+    </div><!-- /olvido-card -->
+
+    <!-- ── Panel derecho ── -->
+    <aside class="auth-side-card">
+      <h3>Recupera el acceso a tu cuenta</h3>
+      
+      <div class="auth-side-lista">
+          <div class="auth-side-item">
+          <div class="auth-side-num">1</div>
+          <div>
+            <strong>Verifica tu identidad</strong>
+            <span>Ingresa el correo, teléfono, nombre y apellidos con los que te registraste.</span>
+          </div>
+        </div>
+        <div class="auth-side-item">
+          <div class="auth-side-num">2</div>
+          <div>
+            <strong>Crea tu nueva contraseña</strong>
+            <span>Elige una contraseña segura con al menos 8 caracteres.</span>
+          </div>
+        </div>
+        <div class="auth-side-item">
+          <div class="auth-side-num">3</div>
+          <div>
+            <strong>¡Listo para ingresar!</strong>
+            <span>Usa tu nueva contraseña para iniciar sesión en Abarrotes Almiux.</span>
+          </div>
+        </div>
+        <div class="hero-almo-wrap">
+          <img src="/images/almo_olvido.png" alt="olvidoIm" class="hero-almo">
+        </div>
+      </div>
+
+      
+      <p class="ya-cuenta" style="margin-top:20px;">
+        ¿Recuerdas tu contraseña? <a href="login.html">Inicia sesión</a>
+      </p>
+    </aside>
+
+  </div><!-- /auth-layout -->
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+
+  <!-- JS del proyecto -->
+<script src="../js/utils.js"></script>
+<script src="../js/navbar.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/productos.js"></script>
+<script src="../js/carrito.js"></script>
+<!-- Validaciones del registro  -->
+<script src="../js/auth.js"></script>
+<script src="../js/olvido.js"></script>
+
+</body>
+</html>

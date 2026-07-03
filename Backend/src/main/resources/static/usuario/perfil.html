@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abarrotes Almiux — Mi perfil</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="perfil-main">
+    <div class="perfil-wrap">
+      <h1>
+        <i class="fa-solid fa-user-circle page-icon"></i>Mi perfil
+      </h1>
+
+      <div id="alertaError" class="alerta alerta-error"></div>
+      <div id="alertaExito" class="alerta alerta-exito"></div>
+
+      <form id="perfilForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombres">Nombre(s)</label>
+            <input type="text" id="nombres" name="nombres" required>
+          </div>
+          <div class="form-group">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" id="apellidos" name="apellidos" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono">
+          </div>
+          <div class="form-group">
+            <label for="fechaNacimiento">Fecha de nacimiento</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="genero">Género</label>
+            <select id="genero" name="genero">
+              <option value="">— Seleccionar —</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Otro">Otro</option>
+              <option value="Prefiero no decir">Prefiero no decir</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" name="direccion">
+          </div>
+        </div>
+
+        <div class="perfil-actions">
+          <button type="submit" class="btn-primary" id="btnGuardar">
+            <i class="fa-solid fa-floppy-disk"></i> Guardar cambios
+          </button>
+          <a href="../home.html" class="btn-secondary perfil-cancelar">
+            Cancelar
+          </a>
+        </div>
+      </form>
+
+      <div class="perfil-links">
+        <a href="mis-pedidos.html">
+          <i class="fa-solid fa-bag-shopping"></i> Mis pedidos
+        </a>
+        <a href="login.html" id="linkCerrarSesion">
+          <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/productos.js"></script>
+  <script src="../js/carrito.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/perfil.js"></script>
+</body>
+</html>

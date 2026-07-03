@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abarrotes Almiux — Inicio</title>
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  ABARROTES ALMIUX — index.html                               ║
+    ║  Página principal (Home)                                     ║
+    ║  Secciones: Hero · Stats · Categorías · Banner promo         ║
+    ╚══════════════════════════════════════════════════════════════╝
+
+    ARCHIVOS DEL PROYECTO:
+    ├── index.html       → Página de inicio (este archivo)
+    ├── productos.html   → Catálogo de productos con filtros
+    ├── nosotros.html    → Acerca de nosotros / historia
+    ├── styles.css       → Todos los estilos (diseño, layout, responsive)
+    ├── hero.css         → Estilos exclusivos del hero (Almo, flotación)
+    └── main.js          → Interactividad y comportamientos
+
+    FUENTES (Google Fonts):
+    · Fraunces 700/900 → Títulos y display
+    · DM Sans 400/500  → Cuerpo de texto e interfaz
+  -->
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+  <!-- Contenedor donde se cargará el Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       HERO
+       · Sección principal de bienvenida, divide en 2 columnas:
+         izquierda = texto + botones · derecha = Almo con animación
+       · En mobile se apila verticalmente (ver hero.css)
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+
+    <!-- Columna izquierda: texto principal -->
+    <div class="hero-text">
+
+      <!-- Badge / etiqueta superior -->
+      <span class="badge">✦ Entrega a domicilio disponible</span>
+
+      <!-- Título principal -->
+      <h1>Tu tienda de<br><span>confianza</span><br>siempre cerca</h1>
+
+      <!-- Subtítulo descriptivo -->
+      <p class="hero-sub">
+        Productos frescos, marcas de calidad y los mejores precios del barrio.
+        Todo lo que necesitas, en un solo lugar.
+      </p>
+
+      <!-- Botones de acción -->
+      <div class="hero-btns">
+        <a href="productos.html" class="btn-primary">Ver productos</a>
+        <a href="promociones.html" class="btn-secondary">Promociones →</a>
+      </div>
+
+    </div><!-- /hero-text -->
+
+    <!-- ══════════════════════════════════════════════════════════
+         Columna derecha: Almo flotando
+         · .hero-almo-wrap aplica el difuminado lateral con mask-image
+         · .hero-almo tiene la animación de flotación (flotar keyframe)
+         · .hero-almo-sombra es la sombra del piso que respira
+           al compás de la animación
+    ══════════════════════════════════════════════════════════ -->
+    <div class="hero-visual">
+
+      <div>
+        <!-- Contenedor con difuminado en costados -->
+        <div class="hero-almo-wrap">
+          <img
+            src="./images/Almo_recargado.png"
+            alt="Almo, la mascota de Abarrotes Almiux, recargado en un estante"
+            class="hero-almo"
+          >
+        </div>
+
+        <!-- Sombra animada en el piso -->
+        <div class="hero-almo-sombra"></div>
+      </div>
+
+    </div><!-- /hero-visual -->
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STATS STRIP
+  ══════════════════════════════════════════════════════════════ -->
+<div class="stats-strip">
+  <div class="stat">
+    <div class="stat-num" data-target="2000" data-prefix="+">+2,000</div>
+    <div class="stat-label">Productos disponibles</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" data-target="20" data-suffix=" años">20 años</div>
+    <div class="stat-label">Sirviendo al barrio</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" data-target="100" data-prefix="+">+100</div>
+    <div class="stat-label">Tus favoritas de siempre</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" data-target="30" data-suffix=" min">30 min</div>
+    <div class="stat-label">Entrega express</div>
+  </div>
+</div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECCIÓN DE CATEGORÍAS
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="categories">
+    <div class="section-label">Lo que tenemos</div>
+    <div class="section-title">Explora nuestras categorías</div>
+
+    <div class="cats-grid">
+      <div class="cat-card" data-cat="carnes">
+        <span class="cat-icon">🥩</span>
+        <div class="cat-name">Carnes y embutidos</div>
+        <div class="cat-count">+120 productos</div>
+      </div>
+      <div class="cat-card" data-cat="limpieza">
+        <span class="cat-icon">🧴</span>
+        <div class="cat-name">Limpieza y hogar</div>
+        <div class="cat-count">+85 productos</div>
+      </div>
+      <div class="cat-card" data-cat="lacteos">
+        <span class="cat-icon">🥛</span>
+        <div class="cat-name">Lácteos y huevo</div>
+        <div class="cat-count">+60 productos</div>
+      </div>
+      <div class="cat-card" data-cat="panaderia">
+        <span class="cat-icon">🍞</span>
+        <div class="cat-name">Panadería</div>
+        <div class="cat-count">+40 productos</div>
+      </div>
+      <div class="cat-card" data-cat="bebidas">
+        <span class="cat-icon">🥤</span>
+        <div class="cat-name">Bebidas</div>
+        <div class="cat-count">+150 productos</div>
+      </div>
+      <div class="cat-card" data-cat="enlatados">
+        <span class="cat-icon">🫙</span>
+        <div class="cat-name">Enlatados y conservas</div>
+        <div class="cat-count">+200 productos</div>
+      </div>
+      <div class="cat-card" data-cat="especias">
+        <span class="cat-icon">🌶️</span>
+        <div class="cat-name">Chiles y especias</div>
+        <div class="cat-count">+75 productos</div>
+      </div>
+      <div class="cat-card" data-cat="botanas">
+        <span class="cat-icon">🍬</span>
+        <div class="cat-name">Dulces y botanas</div>
+        <div class="cat-count">+180 productos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       BANNER PROMO
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="promo" id="ofertas">
+    <div class="promo-text">
+      <h2>Dale un vistazo a los promocionales que tenemos<br>para ti</h2>
+      <p>Promociones por tiempo limitado ¡No te las pierdas!</p>
+    </div>
+    <a href="promociones.html" class="btn-light">Ver Promociones →</a>
+  </div>
+
+  <!-- Contenedor donde se cargará el Footer -->
+  <div id="footer-container"></div>
+
+  <!-- JavaScript principal -->
+  <script src="js/utils.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

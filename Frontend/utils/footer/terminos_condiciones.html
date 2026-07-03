@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones</title>
+
+    <link rel="icon" href="/images/ICONO_ALMOO.png" type="image/png">
+
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- ✅ ICONOS (faltaba esto) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="pagina-aviso">
+
+<!-- NAVBAR (corregido ID) -->
+<div id="navbar-container"></div>
+
+<div class="legal-container">
+
+    <div class="legal-card">
+
+        <h1>Términos y Condiciones</h1>
+
+        <p class="subtitle">
+            Última actualización: 2026
+        </p>
+
+        <p>
+            El presente documento establece las reglas, obligaciones y condiciones de uso bajo las cuales los usuarios pueden acceder y realizar compras en el sitio web de Abarrotes Almiux.
+        </p>
+
+        <h2>1. Objeto y uso del sitio web</h2>
+
+        <p>
+            Abarrotes Almiux pone a disposición su plataforma e-commerce para la consulta de productos, disponibilidad en anaqueles y la realización de pedidos de despensa para entregas a domicilio.
+        </p>
+
+        <h2>2. Precios y disponibilidad de productos</h2>
+
+        <p>
+            Todos los precios mostrados en el sitio están expresados en pesos mexicanos ($MXN). Al tratarse de un inventario vinculado a nuestra tienda física, la disponibilidad de los artículos puede variar; en caso de desabasto, nos comunicaremos contigo de inmediato.
+        </p>
+
+        <h2>3. Entregas y Compromiso Express</h2>
+
+        <p>
+            El servicio de entrega a domicilio está sujeto a una zona de cobertura específica (colonia y alrededores). Nuestro compromiso de entrega express (&lt; 30 min) inicia una vez que el pedido es confirmado en el sistema o vía WhatsApp, pudiendo alterarse por causas de fuerza mayor como condiciones climáticas adversas.
+        </p>
+
+        <h2>4. Métodos de Pago Seguro</h2>
+
+        <p>
+            Para tu total comodidad, no requerimos tarjetas bancarias dentro de la plataforma. El pago se realiza bajo la modalidad contra entrega mediante: efectivo, transferencia bancaria directa o tarjeta de crédito/débito a través de la terminal móvil del repartidor.
+        </p>
+
+        <h2>5. Cambios y Devoluciones</h2>
+
+        <p>
+            Si deseas cancelar o modificar un pedido, deberás notificarlo antes de que el repartidor salga de la tienda. En productos perecederos (como frutas o lácteos), si el artículo no cumple con la frescura esperada, podrás solicitar su cambio o devolución directamente en el momento de la entrega.
+        </p>
+
+        <h2>6. Modificaciones de los términos</h2>
+
+        <p>
+            Abarrotes Almiux se reserva el derecho de actualizar o modificar estas condiciones de servicio en cualquier momento con el fin de mejorar la experiencia de abastecimiento del barrio.
+        </p>
+
+        <h2>7. Contacto y Soporte</h2>
+
+        <p>
+            Para cualquier duda, aclaración o sugerencia sobre tu pedido, puedes ponerte en contacto con nosotros a través de nuestro canal directo de WhatsApp o enviando un correo electrónico a:
+            <a href="mailto:contacto@abarrotesalmiux.com">
+                contacto@abarrotesalmiux.com
+            </a>
+        </p>
+
+        <form class="form-aviso" id="formAviso">
+
+            <label class="check-container">
+                <input type="checkbox" required>
+                He leído y acepto los Términos y Condiciones
+            </label>
+            <br><br>
+
+            <button type="submit">
+                Aceptar y continuar
+            </button>
+
+        </form>
+
+        <!-- Toast de confirmación -->
+        <div id="toastAceptar" style="display:none;position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#03543f;color:#fff;padding:1rem 2rem;border-radius:12px;font-size:1.1rem;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.2);z-index:9999;text-align:center;">
+          ✅ ¡Gracias por aceptar! Redirigiendo…
+        </div>
+
+    </div>
+
+</div>
+
+<!--  FOOTER -->
+<div id="footer-container"></div>
+
+
+<!-- Scripts -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/navbar.js"></script>
+  <script src="../../js/productos.js"></script>
+  <script src="../../js/main.js"></script>
+<script>
+document.getElementById('formAviso').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const toast = document.getElementById('toastAceptar');
+  toast.style.display = 'block';
+  setTimeout(() => { window.location.href = '../../home.html'; }, 2000);
+});
+</script>
+
+</body>
+</html>

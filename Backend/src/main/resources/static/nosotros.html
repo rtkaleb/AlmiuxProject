@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abarrotes Almiux — Acerca de nosotros</title>
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  nosotros.html — Acerca de nosotros                        ║
+    ║                                                            ║
+    ║  ESTRUCTURA DE ESTA PÁGINA:                                ║
+    ║  · Navbar                                                  ║
+    ║  · Hero de sección                                         ║
+    ║  · Historia / origen de la tienda                          ║
+    ║  · Tarjetas de valores                                     ║
+    ║  · Sección del equipo                                      ║
+    ║  · Sección de contacto y ubicación                         ║
+    ║  · Footer                                                  ║
+    ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+  <link rel="icon" href="images/ICONO_ALMOO.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+</head>
+
+<body>
+
+  <!-- Contenedor donde se cargará el Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       HERO DE SECCIÓN
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="page-hero page-hero--centered">
+    <div class="page-hero-content">
+      <span class="badge">🏠 Nuestra historia</span>
+      <h1 class="page-title">Más de <span>5 años</span><br>en el barrio</h1>
+      <p class="page-sub">
+        Somos una tienda familiar que nació con el sueño de ofrecer
+        productos de calidad a precio justo, sin que tengas que ir lejos.
+      </p>
+    </div>
+    <div>
+      <img src="./images/Almiux_tienda.jpeg" alt="almiux tienda">
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECCIÓN: HISTORIA
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="about-historia">
+    <div class="about-historia-inner">
+
+      <!-- Columna izquierda: historia en texto -->
+      <div class="historia-texto">
+        <div class="section-label">Nuestros orígenes</div>
+        <h2 class="section-title" style="margin-bottom: 20px;">
+          Comenzamos con<br>un sueño <span style="color: var(--color-primary)">y muchas ganas</span>
+        </h2>
+
+        <!-- Párrafos de historia -->
+        <p>
+          En el año 2021, Alma, alias Almiux, abrió las puertas de esta tienda con
+          apenas tres anaqueles, una nevera y la convicción de que el barrio
+          merecía un lugar donde comprar productos frescos sin necesidad de
+          recorrer grandes distancias.
+        </p>
+        <br>
+        <p>
+          Lo que comenzó como un pequeño changarro en la esquina de la colonia
+          creció gracias al cariño de las familias del vecindario. Hoy contamos
+          con más de 1,000 productos, servicio a domicilio y el mismo trato
+          de siempre: honesto, cercano y de confianza.
+        </p>
+        <br>
+        <p>
+          Somos una tienda con una familia
+          detrás del mostrador. Porque creemos que el comercio local es el
+          corazón de cada colonia.
+        </p>
+      </div>
+
+      <!-- Columna derecha: datos destacados -->
+      <div class="historia-datos">
+        <!-- Cada .dato-card es un número destacado con descripción -->
+        <div class="dato-card">
+          <div class="dato-num">2021</div>
+          <div class="dato-label">Año de fundación</div>
+        </div>
+        <div class="dato-card">
+          <div class="dato-num">+1,000</div>
+          <div class="dato-label">Productos en tienda</div>
+        </div>
+        <div class="dato-card">
+          <div class="dato-num">7</div>
+          <div class="dato-label">Días a la semana</div>
+        </div>
+        <div class="dato-card">
+          <div class="dato-num">
+            < 30 min</div>
+              <div class="dato-label">Entrega express</div>
+          </div>
+        </div>
+
+      </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECCIÓN: VALORES
+       · Tarjetas que explican la filosofía de la tienda
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="about-valores">
+    <div class="section-label" style="text-align:center">Lo que nos define</div>
+    <h2 class="section-title" style="text-align:center; margin-bottom: 40px;">Nuestros valores</h2>
+
+    <div class="valores-grid">
+
+      <!-- Valor 1 -->
+      <div class="valor-card">
+        <div class="valor-icon">
+          <img src="./images/Confianza.png" alt="Confianza">
+        </div>
+        <h3 class="valor-titulo">Confianza</h3>
+        <p class="valor-desc">
+          Llevamos más de 5 años ganándonos la confianza de nuestros
+          clientes con honestidad, buenos precios y trato justo.
+        </p>
+      </div>
+
+      <!-- Valor 2 -->
+      <div class="valor-card">
+        <div class="valor-icon">
+          <img src="./images/Frescura.png" alt="Frescura">
+
+        </div>
+        <h3 class="valor-titulo">Frescura</h3>
+        <p class="valor-desc">
+          Nos aseguramos de que cada producto en nuestros anaqueles
+          esté en perfectas condiciones y dentro de su fecha de vigencia.
+        </p>
+      </div>
+
+      <!-- Valor 3 -->
+      <div class="valor-card">
+        <div class="valor-icon">
+          <img src="./images/Comunidad.png" alt="Comunidad">
+        </div>
+        <h3 class="valor-titulo">Comunidad</h3>
+        <p class="valor-desc">
+          Somos parte del barrio. Por eso apoyamos a productores locales
+          y reinvertimos en la colonia que nos ha dado tanto.
+        </p>
+      </div>
+
+      <!-- Valor 4 -->
+      <div class="valor-card">
+        <div class="valor-icon">
+          <img src="./images/Rapidez.png" alt="Rapidez">
+        </div>
+        <h3 class="valor-titulo">Rapidez</h3>
+        <p class="valor-desc">
+          Entrega a domicilio en menos de 30 minutos dentro de la colonia.
+          Sabemos que tu tiempo es valioso.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECCIÓN: EQUIPO
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="about-equipo">
+    <div class="section-label" style="text-align:center">Colaboradores</div>
+    <h2 class="section-title" style="text-align:center; margin-bottom: 40px;">A quien conocerás</h2>
+
+    <div class="equipo-grid">
+
+      <div class="miembro-card">
+        <div class="miembro-avatar">
+          <img src="./images/Alma .png" alt="">
+        </div>
+        <h3 class="miembro-nombre">Alma, alias "Almiux"</h3>
+        <p class="miembro-rol">Fundadora y dueña</p>
+        <p class="miembro-desc">El ALMA de la tienda. Conoce a cada cliente por su nombre y sabe exactamente dónde está
+          cada producto.</p>
+      </div>
+
+      <div class="miembro-card">
+        <div class="miembro-avatar">
+          <img src="./images/Arturo.png" alt="Arturo_dev">
+        </div>
+        <h3 class="miembro-nombre">Arturo Ramírez </h3>
+        <p class="miembro-rol">Developer</p>
+        <p class="miembro-desc">El guardián de la base de datos</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECCIÓN: Desarrolladores
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="about-devs">
+    <div class="section-label" style="text-align:center">Las personas detrás de este sitio</div>
+    <h2 class="section-title" style="text-align:center; margin-bottom: 40px;">Nuestro equipo</h2>
+
+    <div class="devs-grid">
+
+      <div class="miembro-card">
+        <div class="miembro-avatar">
+          <img src="./images/KALEB.png" alt="Kaleb_dev">
+        </div>
+        <h3 class="miembro-nombre">Kaleb Torres</h3>
+        <p class="miembro-rol">Developer</p>
+        <p class="miembro-desc">Desarrollador · Scrum Master</p>
+      </div>
+
+      <div class="miembro-card">
+        <div class="miembro-avatar">
+          <img src="./images/DANNA.png" alt="Danna_dev">
+        </div>
+        <h3 class="miembro-nombre">Danna Remigio</h3>
+        <p class="miembro-rol">Developer</p>
+        <p class="miembro-desc">Frontend Developer</p>
+      </div>
+
+      <div class="miembro-card">
+        <div class="miembro-avatar">
+          <img src="./images/ArturoFoto.png" alt="Arturo_dev">
+        </div>
+        <h3 class="miembro-nombre">Arturo Ramírez </h3>
+        <p class="miembro-rol">Developer</p>
+        <p class="miembro-desc">Frontend Developer</p>
+      </div>
+
+      <div class="miembro-card">
+        <div class="miembro-avatar">
+          <img src="./images/ZARED.png" alt="Zared_dev">
+        </div>
+        <h3 class="miembro-nombre">Zared Ortiz</h3>
+        <p class="miembro-rol">Developer</p>
+        <p class="miembro-desc">Backend Developer</p>
+      </div>
+
+      <div class="miembro-card">
+        <div class="miembro-avatar">
+          <img src="./images/YARIS.png" alt="Yaris_dev">
+        </div>
+        <h3 class="miembro-nombre">Yarilis Hernández</h3>
+        <p class="miembro-rol">Developer</p>
+        <p class="miembro-desc">Frontend Developer</p>
+      </div>
+
+      <div class="miembro-card">
+        <div class="miembro-avatar">
+          <img src="./images/DIEGO.png" alt="Diego_dev">
+        </div>
+        <h3 class="miembro-nombre">Diego Quiñónez</h3>
+        <p class="miembro-rol">Developer</p>
+        <p class="miembro-desc">Backend Developer
+
+      </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       SECCIÓN: CONTACTO Y UBICACIÓN
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="contacto-container"></div>
+
+  <!-- Contenedor donde se cargará el Footer -->
+  <div id="footer-container"></div>
+
+
+  <script src="js/utils.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/carrito.js"></script>
+
+</body>
+
+</html>

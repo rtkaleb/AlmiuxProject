@@ -1,0 +1,53 @@
+<!--
+  carrito.html — Drawer lateral del carrito de compras
+  ─────────────────────────────────────────────────────
+  Este fragmento se incluye en el <body> de cada página
+  (o lo inyecta carrito.js automáticamente si no existe).
+
+  Requiere:
+    · js/carrito.js  → lógica completa del carrito
+    · styles.css     → estilos base (incluye los de carrito al final)
+-->
+
+<div class="cart-drawer" id="cartDrawer" aria-live="polite">
+
+  <!-- ── Header ──────────────────────────────────── ───────────── -->
+  <div class="cart-header">
+    <div>
+      <h3>Mi carrito</h3>
+      <span class="cart-items-count" id="cartItemsCount">0 productos</span>
+    </div>
+    <button id="closeCart" aria-label="Cerrar carrito">✕</button>
+  </div>
+
+  <!-- ── Lista de ítems ───────────────────────────────────────── -->
+  <div class="cart-body" id="cartItems">
+
+    <!-- Estado vacío (visible por defecto) -->
+    <div class="cart-empty" id="cartEmpty">
+      <span>🛒</span>
+      Tu carrito está vacío
+    </div>
+
+    <!-- Los ítems los genera carrito.js dinámicamente aquí -->
+
+  </div>
+
+  <!-- ── Footer con total y checkout ─────────────────────────── -->
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+
+    <div class="cart-total">
+      Total:
+      <span id="totalAmount">$0.00</span>
+    </div>
+
+    <button class="btn-primary" type="button" onclick="finalizarCompra()">
+      Finalizar compra
+    </button>
+
+  </div>
+
+</div>
+
+<!-- Overlay oscuro (lo inyecta carrito.js, pero puede ir aquí también) -->
+<div id="cartOverlay" aria-hidden="true"></div>

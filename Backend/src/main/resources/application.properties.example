@@ -1,0 +1,32 @@
+# ============================================================
+# PLANTILLA DE CONFIGURACIÓN - ALMIUX Backend
+# ============================================================
+# INSTRUCCIONES:
+#   1. Copia este archivo y renómbralo a: application.properties
+#   2. Rellena los valores según tu entorno local
+#   3. NUNCA subas application.properties a GitHub
+# ============================================================
+
+spring.application.name=ALMIUX
+
+# --- Base de datos ---
+# Cambia "almiux_db" si tu base de datos tiene otro nombre
+spring.datasource.url=jdbc:mysql://localhost:3306/almiux_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+
+# Tu usuario de MySQL (normalmente "root" en local)
+spring.datasource.username=TU_USUARIO_MYSQL
+
+# Tu contraseña de MySQL (puede estar vacía si no configuraste una)
+spring.datasource.password=TU_CONTRASEÑA_MYSQL
+
+# --- Driver ---
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# --- Hibernate / JPA ---
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# --- Servidor ---
+server.port=8080

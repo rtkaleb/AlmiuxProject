@@ -1,0 +1,11 @@
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Node.js
+node_modules/
+
+# Claude
+.claude/

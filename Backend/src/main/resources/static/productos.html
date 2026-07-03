@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abarrotes Almiux — Productos</title>
+
+  <!--
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  productos.html — Catálogo de productos                    ║
+    ║                                                            ║
+    ║  ESTRUCTURA DE ESTA PÁGINA:                                ║
+    ║  · Navbar (igual en todas las páginas)                     ║
+    ║  · Hero pequeño de sección                                 ║
+    ║  · Barra de búsqueda + filtros de categoría                ║
+    ║  · Grid de tarjetas de producto                            ║
+    ║  · Footer (igual en todas las páginas)                     ║
+    ║                                                            ║
+    ║  CÓMO AGREGAR PRODUCTOS:                                   ║
+    ║  Busca el comentario "AGREGAR PRODUCTO AQUÍ" y copia       ║
+    ║  el bloque de .product-card con tus datos.                 ║
+    ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+  <link rel="icon" href="images/ICONO_ALMOO.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+</head>
+<body>
+
+<!-- Contenedor donde se cargará el Navbar -->
+  <div id="navbar-container"></div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════
+       HERO DE SECCIÓN
+       · Versión compacta del hero, solo para páginas internas
+       · Sin la ilustración del anaquel
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <span class="badge">🛒 Catálogo completo</span>
+      <h1 class="page-title">Nuestros <span>productos</span></h1>
+      <p class="page-sub">Más de 2,000 productos de las mejores marcas. Busca lo que necesitas o explora por categoría.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       BARRA DE BÚSQUEDA
+       · El input dispara filtrado en tiempo real (via JS)
+       · El JS en main.js escucha el evento 'input'
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="search-bar-wrap">
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <!-- id="searchInput" es usado por el JS para filtrar productos -->
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Buscar productos (ej: leche, arroz, jabón...)"
+        autocomplete="off"
+      >
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       FILTROS DE CATEGORÍA
+       · Botones que filtran las tarjetas de producto
+       · El botón activo tiene la clase .filter-active (manejada por JS)
+       · data-filter debe coincidir con data-cat de las tarjetas
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="filters-wrap">
+    <div class="filters" id="filters">
+      <!-- data-filter="all" muestra todos los productos -->
+      <button class="filter-btn filter-active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="carnes">🥩 Carnes</button>
+      <button class="filter-btn" data-filter="lacteos">🥛 Lácteos</button>
+      <button class="filter-btn" data-filter="bebidas">🥤 Bebidas</button>
+      <button class="filter-btn" data-filter="enlatados">🫙 Enlatados</button>
+      <button class="filter-btn" data-filter="limpieza">🧴 Limpieza</button>
+      <button class="filter-btn" data-filter="panaderia">🍞 Panadería</button>
+      <button class="filter-btn" data-filter="especias">🌶️ Especias</button>
+      <button class="filter-btn" data-filter="botanas">🍬 Botanas</button>
+      <button class="filter-btn" data-filter="abarrotes">🏪 Abarrotes</button>
+      <button class="filter-btn" data-filter="higiene_personal">🪥 Higiene personal</button>
+
+      <!-- Filtro especial: muestra solo productos con data-oferta="true" -->
+      <button class="filter-btn filter-oferta" data-filter="ofertas">🏷️ Ofertas</button>
+    </div>
+
+    <!-- Contador de resultados (actualizado por JS) -->
+    <p class="results-count" id="resultsCount">Mostrando todos nuestros productos</p>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       GRID DE PRODUCTOS
+       ─────────────────────────────────────────────────────────────
+       CÓMO AGREGAR UN PRODUCTO:
+       Copia uno de los bloques .product-card y cambia:
+         · data-cat="..."    → categoría (debe coincidir con los filtros)
+         · data-oferta="true" → si está en oferta (o quita el atributo)
+         · .prod-icon         → emoji del producto
+         · .prod-name         → nombre del producto
+         · .prod-desc         → descripción corta
+         · .prod-price        → precio actual
+         · .prod-original     → precio tachado si hay oferta (opcional)
+         · .prod-badge        → texto del badge de oferta (opcional)
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="products-section">
+    <div class="products-grid" id="productsGrid">
+
+      <!-- ══ LÁCTEOS ══════════════════════════════════════════ -->
+
+      <!-- Producto: Leche entera -->
+      <div class="product-card" data-cat="abarrotes" data-oferta="true">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">
+            <img src="./imagenes-bebidas/lecheEnt1l.png" alt="Leche entera Lala 1L" loading="lazy">
+          </span>
+          <!-- Badge de oferta (solo si el producto está en oferta) -->
+          <span class="prod-badge">-20%</span>
+        </div>
+        <div class="prod-info">
+         
+          <h3 class="prod-name">Leche entera Lala 1L</h3>
+           <p class="prod-cat-tag">Lácteos</p>
+          <p class="prod-desc">Leche entera pasteurizada, ideal para toda la familia.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$18.50</span>
+            <!-- Precio original tachado (quitar si no hay oferta) -->
+            <span class="prod-original">$23.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Leche entera Lala 1L', 18.50)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Yogurt natural -->
+      <div class="product-card" data-cat="lacteos">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">
+            <img src="" alt="Yogurt natural Danone 1kg" loading="lazy">
+          </span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Lácteos</p>
+          <h3 class="prod-name">Yogurt natural Danone 1kg</h3>
+          <p class="prod-desc">Yogurt cremoso sin azúcar añadida, rico en proteínas.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$42.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Yogurt natural Danone 1kg', 42.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Queso Oaxaca -->
+      <div class="product-card" data-cat="lacteos">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🧀</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Lácteos</p>
+          <h3 class="prod-name">Queso Oaxaca 400g</h3>
+          <p class="prod-desc">Queso hebra artesanal, perfecto para quesadillas.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$65.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Queso Oaxaca 400g', 65.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- ══ BEBIDAS ════════════════════════════════════════════ -->
+
+      <!-- Producto: Agua embotellada -->
+      <div class="product-card" data-cat="bebidas" >
+        <div class="prod-img-wrap">
+          <span><img src="imagenes-bebidas/AguaEmbotellada.png" alt="Agua embotellada Skarch 500mL" loading="lazy"></span>
+          <span class="prod-badge">-15%</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Bebidas</p>
+          <h3 class="prod-name">Agua skarch 500mL</h3>
+          <p class="prod-desc">Agua purificada sin gas, presentación individual.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$12.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Agua skarch 500mL', 12.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Refresco de cola -->
+      <div class="product-card" data-cat="bebidas">
+        <div class="prod-img-wrap">
+          <span><img src="imagenes-bebidas/cocaLata.png" alt="Coca-Cola lata 600mL" loading="lazy"></span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Bebidas</p>
+          <h3 class="prod-name">Coca-Cola lata 600 mL</h3>
+          <p class="prod-desc">Refresco de cola clásico, presentación en lata.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$18.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Coca-Cola lata', 18.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Jugo de naranja -->
+      <div class="product-card" data-cat="bebidas">
+        <div class="prod-img-wrap">
+          <span><img src="imagenes-bebidas/jugoNaranja2L.png" alt="Jugo de naranja Del Valle 2L" loading="lazy"></span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Bebidas</p>
+          <h3 class="prod-name">Jugo de naranja Del Valle 2L</h3>
+          <p class="prod-desc">100% jugo de naranja, sin conservadores.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$32.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Jugo de naranja Del Valle 2L', 32.00)">
+          + Agregar
+        </button>
+      </div>
+
+      
+      <div class="product-card" data-cat="bebidas">
+        <div class="prod-img-wrap">
+          <span><img src="imagenes-bebidas/fantaLata.png" alt="Refresco Fanta naranja 600mL" loading="lazy"></span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Bebidas</p>
+          <h3 class="prod-name">refresco de naranja fanta 600mL</h3>
+          <p class="prod-desc">sabor clasico de fanta en presentacion de lata.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$12.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'fantaLata', 12.00)">
+          + Agregar
+        </button>
+      </div>
+      
+      <div class="product-card" data-cat="bebidas">
+        <div class="prod-img-wrap">
+          <span><img src="imagenes-bebidas/fuzeTea.png" alt="Fuze Tea té verde" loading="lazy"></span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Bebidas</p>
+          <h3 class="prod-name">fuze tea Té verde L</h3>
+          <p class="prod-desc">Té verde helado sin gas.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$16.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'fuzeTea', 16.00)">
+          + Agregar
+        </button>
+      </div>
+      
+      <div class="product-card" data-cat="bebidas">
+        <div class="prod-img-wrap">
+          <span><img src="imagenes-bebidas/jugoManzana.png" alt="Jugo de manzana Del Valle 600mL" loading="lazy"></span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Bebidas</p>
+          <h3 class="prod-name">Jugo de manzana Del Valle 600mL</h3>
+          <p class="prod-desc">100% jugo de manzana, sin conservadores.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$18.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Jugo de manzana Del Valle 600mL', 18.00)">
+          + Agregar
+        </button>
+      </div>
+      
+      <div class="product-card" data-cat="bebidas">
+        <div class="prod-img-wrap">
+          <span class="prod-icon"><img src="imagenes-bebidas/AguaM2L.png" alt="Agua mineral 2L" loading="lazy"></span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Bebidas</p>
+          <h3 class="prod-name">Agua mineral 2L</h3>
+          <p class="prod-desc">agua mineralizada perfecta para disfrutoa sola o con jugos</p>
+          <div class="prod-prices">
+            <span class="prod-price">$28.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Agua mineral 2L', 28.00)">
+          + Agregar
+        </button>
+      </div>
+
+
+
+
+
+      <!-- ══ ENLATADOS ══════════════════════════════════════════ -->
+
+      <!-- Producto: Atún en agua -->
+      <div class="product-card" data-cat="enlatados" data-oferta="true">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🐟</span>
+          <span class="prod-badge">3x2</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Enlatados</p>
+          <h3 class="prod-name">Atún Dolores en agua 140g</h3>
+          <p class="prod-desc">Atún en trozos en agua, bajo en grasa. Oferta 3×2.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$19.50</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Atún Dolores en agua 140g', 19.50)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Frijoles negros -->
+      <div class="product-card" data-cat="enlatados">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🫘</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Enlatados</p>
+          <h3 class="prod-name">Frijoles negros La Costeña 560g</h3>
+          <p class="prod-desc">Frijoles bayos enteros cocidos, listos para calentar.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$24.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Frijoles negros La Costeña 560g', 24.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Salsa de tomate -->
+      <div class="product-card" data-cat="enlatados">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🍅</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Enlatados</p>
+          <h3 class="prod-name">Tomate entero San Marcos 400g</h3>
+          <p class="prod-desc">Tomates pelados enteros en jugo natural.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$21.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Tomate entero San Marcos 400g', 21.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- ══ LIMPIEZA ════════════════════════════════════════════ -->
+
+      <!-- Producto: Detergente -->
+      <div class="product-card" data-cat="limpieza" data-oferta="true">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🧺</span>
+          <span class="prod-badge">-30%</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Limpieza</p>
+          <h3 class="prod-name">Detergente Roma 1kg</h3>
+          <p class="prod-desc">Detergente multiusos en polvo, extra rendidor.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$35.00</span>
+            <span class="prod-original">$50.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Detergente Roma 1kg', 35.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Jabón de trastes -->
+      <div class="product-card" data-cat="limpieza">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🧴</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Limpieza</p>
+          <h3 class="prod-name">Axion lavaplatos 750ml</h3>
+          <p class="prod-desc">Líquido lavaplatos con poder desengrasante.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$27.50</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Axion lavaplatos 750ml', 27.50)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- ══ PANADERÍA ═══════════════════════════════════════════ -->
+
+      <!-- Producto: Pan de caja -->
+      <div class="product-card" data-cat="panaderia">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🍞</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Panadería</p>
+          <h3 class="prod-name">Pan Bimbo blanco 680g</h3>
+          <p class="prod-desc">Pan de caja suave, ideal para tortas y sándwiches.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$38.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Pan Bimbo blanco 680g', 38.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Galletas -->
+      <div class="product-card" data-cat="panaderia" data-oferta="true">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🍪</span>
+          <span class="prod-badge">-25%</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Panadería</p>
+          <h3 class="prod-name">Galletas Marías Gamesa 400g</h3>
+          <p class="prod-desc">Galletas de vainilla clásicas, perfectas para el café.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$22.00</span>
+            <span class="prod-original">$29.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Galletas Marías Gamesa 400g', 22.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- ══ ESPECIAS ════════════════════════════════════════════ -->
+
+      <!-- Producto: Chile en polvo -->
+      <div class="product-card" data-cat="especias">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🌶️</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Especias</p>
+          <h3 class="prod-name">Chile ancho Dolores 100g</h3>
+          <p class="prod-desc">Chile seco para salsas, moles y marinadas.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$18.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Chile ancho Dolores 100g', 18.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Consomé -->
+      <div class="product-card" data-cat="especias">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🧂</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Especias</p>
+          <h3 class="prod-name">Consomé de pollo Knorr 190g</h3>
+          <p class="prod-desc">Sazonador granulado para sopas, arroces y guisos.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$31.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Consomé de pollo Knorr 190g', 31.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- ══ BOTANAS ═════════════════════════════════════════════ -->
+
+      <!-- Producto: Papas fritas -->
+      <div class="product-card" data-cat="botanas">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🍟</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Botanas</p>
+          <h3 class="prod-name">Sabritas naturales 170g</h3>
+          <p class="prod-desc">Papas fritas con sal de mar, el clásico de siempre.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$20.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Sabritas naturales 170g', 20.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Chocolate -->
+      <div class="product-card" data-cat="botanas" data-oferta="true">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🍫</span>
+          <span class="prod-badge">-10%</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Botanas</p>
+          <h3 class="prod-name">Carlos V 30g (caja de 12)</h3>
+          <p class="prod-desc">El chocolate mexicano más querido, en caja familiar.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$54.00</span>
+            <span class="prod-original">$60.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Carlos V caja de 12', 54.00)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- ══ CARNES ══════════════════════════════════════════════ -->
+
+      <!-- Producto: Jamón de pavo -->
+      <div class="product-card" data-cat="carnes">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🥩</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Carnes</p>
+          <h3 class="prod-name">Jamón de pavo FUD 200g</h3>
+          <p class="prod-desc">Jamón de pavo rebanado, bajo en grasa.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$38.50</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Jamón de pavo FUD 200g', 38.50)">
+          + Agregar
+        </button>
+      </div>
+
+      <!-- Producto: Salchicha -->
+      <div class="product-card" data-cat="carnes" data-oferta="true">
+        <div class="prod-img-wrap">
+          <span class="prod-icon">🌭</span>
+          <span class="prod-badge">-20%</span>
+        </div>
+        <div class="prod-info">
+          <p class="prod-cat-tag">Carnes</p>
+          <h3 class="prod-name">Salchichas FUD 500g</h3>
+          <p class="prod-desc">Salchichas de pavo, perfectas para hotdogs y guisos.</p>
+          <div class="prod-prices">
+            <span class="prod-price">$44.00</span>
+            <span class="prod-original">$55.00</span>
+          </div>
+        </div>
+        <button class="btn-agregar" onclick="agregarAlCarrito(this, 'Salchichas FUD 500g', 44.00)">
+          + Agregar
+        </button>
+      </div>
+
+
+    </div><!-- /products-grid -->
+
+    <!-- Mensaje cuando no hay resultados del filtro/búsqueda -->
+    <div class="no-results" id="noResults" style="display:none">
+      <span>😕</span>
+      <p>No encontramos productos con ese filtro.</p>
+      <button class="btn-primary" onclick="resetFiltros()">Ver todos los productos</button>
+    </div>
+
+  </section>
+
+ 
+
+  <!-- Contenedor donde se cargará el Footer -->
+  <div id="footer-container"></div>
+
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/carrito.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso de Privacidad</title>
+
+    <link rel="icon" href="/images/ICONO_ALMOO.png" type="image/png">
+
+    <link rel="stylesheet" href="../../styles.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (ICONOS) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="pagina-aviso">
+
+<!-- NAVBAR -->
+<div id="navbar-container"></div>
+
+<!-- CONTENIDO -->
+<div class="legal-container">
+    <div class="legal-card">
+
+        <h1>Aviso de Privacidad</h1>
+
+        <p class="subtitle">
+            Última actualización: Junio 2026
+        </p>
+
+        <p>
+                En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares,
+                Abarrotes Almiux pone a disposición de sus usuarios el presente Aviso de Privacidad.
+            </p>
+
+            <h2>1. Responsable del tratamiento de datos personales</h2>
+
+            <p>
+                Abarrotes Almiux es responsable del uso y protección de los datos personales recabados
+                a través de su sitio web y servicios digitales.
+            </p>
+
+            <h2>2. Datos personales recabados</h2>
+
+            <ul>
+                <li>Nombre completo</li>
+                <li>Dirección de envío</li>
+                <li>Número telefónico</li>
+                <li>Correo electrónico</li>
+                <li>Información de facturación</li>
+            </ul>
+
+            <h2>3. Finalidad del tratamiento de datos</h2>
+
+            <p>
+                Los datos personales serán utilizados para procesar pedidos,
+                realizar entregas, emitir facturas y brindar atención al cliente.
+            </p>
+
+            <h2>4. Protección de la información</h2>
+
+            <p>
+                Implementamos medidas de seguridad para proteger la información personal
+                de accesos no autorizados.
+            </p>
+
+            <h2>5. Derechos ARCO</h2>
+
+            <p>
+                El usuario podrá solicitar acceso, rectificación, cancelación u oposición
+                sobre sus datos personales enviando un correo a:
+                <a href="mailto:contacto@abarrotesalmiux.com">
+                    contacto@abarrotesalmiux.com
+                </a>
+            </p>
+
+            <h2>6. Uso de cookies</h2>
+
+            <p>
+                Nuestro sitio puede utilizar cookies para mejorar la experiencia del usuario.
+            </p>
+
+            <h2>7. Modificaciones al aviso</h2>
+
+            <p>
+                Abarrotes Almiux podrá actualizar el presente aviso en cualquier momento.
+            </p>
+
+            <!-- CHECKBOX -->
+            <form class="form-aviso" id="formAviso">
+                <label class="check-container">
+                    <input type="checkbox" required>
+                    He leído y acepto el Aviso de Privacidad
+                </label>
+                <br><br>
+                <button type="submit">Aceptar y continuar</button>
+            </form>
+
+            <!-- Toast de confirmación -->
+            <div id="toastAceptar" style="display:none;position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#03543f;color:#fff;padding:1rem 2rem;border-radius:12px;font-size:1.1rem;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,.2);z-index:9999;text-align:center;">
+              ✅ ¡Gracias por aceptar! Redirigiendo…
+            </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer-container"></div>
+
+
+<!-- Scripts -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/navbar.js"></script>
+  <script src="../../js/productos.js"></script>
+  <script src="../../js/main.js"></script>
+<script>
+document.getElementById('formAviso').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const toast = document.getElementById('toastAceptar');
+  toast.style.display = 'block';
+  setTimeout(() => { window.location.href = '../../home.html'; }, 2000);
+});
+</script>
+</body>
+</html>
